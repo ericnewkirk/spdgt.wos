@@ -1,4 +1,37 @@
-## code to prepare `wos_template` dataset goes here
+activity_codes <- tibble::tibble(
+  activity_code = 1:14,
+  activity_descr = c(
+    "OA1 - Casual observation",
+    "OA2 - Classification counts",
+    "OA3 - Aerial Trend Counts",
+    "OA4 - Ground Trend Counts",
+    "OA5 - Live Trapping Operation - Animal",
+    "OA6 - Permanent Check Station",
+    "OA7 - Field Check Station",
+    "OA8 - Other Check Station",
+    "OA9 - Census/Survey",
+    "OA10 - Mortality Transects",
+    "OA11 - Nesting/Production Survey",
+    "OA12 - Marked Animal",
+    "OA13 - Damage Control",
+    "OA14 - Seasonal Range Survey"
+  )
+)
+
+districts <- stats::setNames(
+  c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 33, 35),
+  c(
+    "Cheyenne Headquarters", "Pinedale Region", "Cody Region",
+    "Sheridan Region", "Green River Region", "Laramie Region", "Lander Region",
+    "Casper Region", "Nongame Program", "Migratory Game Bird Program",
+    "Jackson Region", "Chapter 33", "Jackson Hole Nature Mapping"
+  )
+)
+
+survey_types <- tibble::tibble(
+  survey_type = c("Composition", "Sightability"),
+  activity_code = c(2, 9)
+)
 
 wos_template <- tibble::tibble(
   observer = character(),         # First Last
@@ -50,4 +83,10 @@ wos_template <- tibble::tibble(
   field_notes = character()       # leave blank
 )
 
-usethis::use_data(wos_template, overwrite = TRUE)
+usethis::use_data(
+  activity_codes,
+  districts,
+  survey_types,
+  wos_template,
+  internal = TRUE
+)
